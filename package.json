@@ -1,20 +1,26 @@
 {
-  "name": "your-project-to-be",
+  "name": "cognition-collection",
   "version": "1.0.0",
-  "description": "Describe me",
+  "description": "Utility alloy for cogition-framework aimed at making collection management less painful",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "enlore",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/enlore/cognition-collection"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/enlore/cognition-collection/issues"
   },
-  "license": "ISC",
-  "keywords": [],
+  "license": "Apache-2.0",
+  "keywords": [
+      "cognition-framework",
+      "cognition alloy",
+      "alloy",
+      "utility alloy",
+      "cognition utility"
+  ],
   "devDependencies": {
     "colors": "^1.1.2",
     "gulp": "^3.9.0",
