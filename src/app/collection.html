@@ -1,0 +1,72 @@
+<script>
+    $.cog({
+        cid: 1,
+
+        setCid: function (candidate) {
+            candidate.cid = this.cid++
+            return candidate
+        },
+
+        insert: function (candidate, collection, push) {
+            candidate = this.setCid(candidate)
+
+            if (collection === void 0)
+                var collection = []
+
+            if (push)
+                collection.push(candidate)
+            else
+                collection.unshift(candidate)
+
+            return collection
+        },
+
+        updateOne: function (candidate, collection) {
+            for (var i = 0; i < collection.length; i++) {
+                var member = collection[i]
+
+                if (member.cid === candidate.cid)
+                    collection[i] = candidate
+            }
+
+            return collection
+        },
+
+        find: function (query, collection) {},
+
+        remove: function (candidate, collection) {
+            var filtered = collection.filter(function (member) {
+                if (member.cid === candidate.cid)
+                    return false
+                return true
+            })
+
+            return filtered
+        },
+
+        upsert: function (candidate, collection, push) { // granted, this assumes all ids are unique
+            var found = false
+
+            for (var i = 0; i < collection.length; i++) {
+                var member = collection[i]
+
+                if (member.cid === candidate.cid) {
+                    found = true
+                    collection[i] = candidate // found the member in question, so we overwrite
+                    break
+                }
+            }
+
+            if (!found) {
+                candidate = this.setCid(candidate)
+
+                if (push)
+                    collection.push(candidate)
+                else
+                    collection.unshift(candidate)
+            }
+
+            return collection
+        }
+    })
+</script>
