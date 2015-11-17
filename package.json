@@ -1,6 +1,6 @@
 {
   "name": "cognition-collection",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility alloy for cogition-framework aimed at making collection management less painful",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,11 +15,11 @@
   },
   "license": "Apache-2.0",
   "keywords": [
-      "cognition-framework",
-      "cognition alloy",
-      "alloy",
-      "utility alloy",
-      "cognition utility"
+    "cognition-framework",
+    "cognition alloy",
+    "alloy",
+    "utility alloy",
+    "cognition utility"
   ],
   "devDependencies": {
     "colors": "^1.1.2",
