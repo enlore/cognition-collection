@@ -1,0 +1,20 @@
+{
+    "length": 3,
+    "store": [
+        {
+            "breed": "Doobie",
+            "name": "Spanks",
+            "dag_id": 1
+        },
+        {
+            "breed": "Dane",
+            "name": "Stet Langley",
+            "dag_id": 2
+        },
+        {
+            "breed": "Little Wah",
+            "name": "Coolio",
+            "dag_id": 3
+        }
+    ]
+}
