@@ -1,6 +1,36 @@
+<blueprint>
+    <data name="canon" />
+    <data name="working" />
+
+    <!--<data name="svc" service="data serviceConfig" prop="true" />-->
+
+    <adapter name="serviceConfig" />
+    <!--<adapter name="working"  control="true" />-->
+    <!--<adapter name="canonical" control="true" />-->
+
+    <!--<sensor needs="collectionConfig,serviceConfig" filter="fetchOnInit" run="fetch" />-->
+
+</blueprint>
+
 <script>
     $.cog({
-        cid: 1,
+        init: function init () {
+            // there's a initializer that fetches everything off an endpoint
+            // there's a Create analog that posts to an endpoint
+            // Update puts
+            // Delete deletes
+
+        },
+
+        fetch: function fetch () {
+            this.svc.request()
+        },
+
+        fetchOnInit: function (args) {
+            return args.collectionConfig.fetchOnInit ? true : false // filters for undefined
+        },
+
+        cid: 1, // internal id counter
 
         setCid: function (candidate) {
             candidate.cid = this.cid++

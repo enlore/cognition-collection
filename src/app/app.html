@@ -1,5 +1,11 @@
 <blueprint>
-    <alloy name="collection" url="collection.html" />
+    <data name="collectionConfig" value="run collectionConfig">
+
+    <data name="cfg_dags" value="bananas"/>
+    <alloy name="dags" source="collectionConfig" url="collection.html" />
+    <data name="dags_working" />
+    <data name="dags_canonical" />
+
 </blueprint>
 
 <display>
@@ -8,6 +14,23 @@
 
 <script>
   $.cog({
-    init: function init () {},
+      init: function init () {
+
+      },
+
+      collectionConfig: function () {
+          return {
+              serviceConfig: "cfg_dags",
+              working: "dags_working",
+              canonical: "dags_canonical",
+              fetchOnInit: true
+          }
+      },
+
+      configDags: function () {
+          return {
+              url: "/api/dags"
+          }
+      }
   })
 </script>
