@@ -6,6 +6,7 @@ require("colors");
 const gulp                = require("gulp")
     , gChmod              = require("gulp-chmod")
     , gWeb                = require("gulp-connect")
+    , gDemon              = require("gulp-nodemon")
     , gIf                 = require("gulp-if")
 
 const gPostCSS            = require("gulp-postcss")
@@ -16,6 +17,7 @@ const gPostCSS            = require("gulp-postcss")
 const config = {
     permissionBits: 664,
     autoprefix: process.env.PREFIX === "true" ? true : false,
+    app_server: process.env.USE_APP_SERVER === "true"? true : false,
 
     /**
      * Check out the docs for the postcss-import processor
@@ -52,6 +54,14 @@ const paths = {
             js: "dist/js/vendor",
             css: "dist/css/vendor"
         }
+    }
+}
+
+const nodemonConfig = {
+    script: "server.js",
+    ignore: ["node_modules"],
+    env: {
+        port: process.env.PORT || 3000
     }
 }
 
@@ -127,7 +137,10 @@ gulp.task("watch",  function () {
  * alter its behavior.
  */
 gulp.task("serve", function () {
-    gWeb.server(webServerConfig);
+    if (config.app_server)
+        gDemon(nodemonConfig)
+    else
+        gWeb.server(webServerConfig);
 });
 
 /*
