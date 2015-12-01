@@ -1,15 +1,16 @@
 <blueprint>
-    <data name="collectionConfig" value="run collectionConfigCrap">
+    <data name="collectionConfig" value="run collectionConfigCrap" />
 
-    <data name="cfg_svc_dags" run="dagsConfig"/>
+    <data name="cfg_svc_dags" value="run dagsConfig"/>
     <data name="dags_canonical" />
 
     <!--TODO temporarily a cog instead of an alloy-->
-    <cog name="dags" source="data collectionConfig" url="collection.html" />
+    <cog name="dags" source="data collectionConfig" item="data bunny" url="collection.html" />
+
 </blueprint>
 
 <display>
-    <h1> Lets Write a Collection Utility Alloy </h2>
+    <h1> Lets Write a Collection Utility Alloy </h1>
 </display>
 
 <script>

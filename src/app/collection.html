@@ -7,9 +7,10 @@
     <adapter name="serviceConfig" prop="true" />
     <adapter name="options" />
     <adapter name="canonical" control="true" /> <!--control === write out behaviour-->
+    <data name="svc_dag" service="read serviceConfig" />
 
-    <sensor watch="collectionConfig" run="startService" auto="true" />
     <sensor watch="serviceConfig" run="startService" auto="true" />
+    <!--<sensor watch="bunny" run="startService" auto="true" />-->
     <!--<data name="svc" service="data serviceConfig" prop="true" />-->
 
     <sensor  needs="serviceConfig,options" run="_firstRun" />
@@ -24,8 +25,9 @@
             url: "wooo crap"
         },
 
-        startService: function startService () {
-            //var config = this.serviceConfig.read()
+        startService: function startService (msg) {
+
+            console.log('ss',msg);
 
         },
 
