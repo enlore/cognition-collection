@@ -2,14 +2,15 @@
     <data name="canon" />
     <data name="working" />
 
-    <data name="bananaConfig"> <!--bullshit intermediate config to shortcircuit adapter/service exception-->
+    <data name="bananaConfig" value="prop crap" prop="true" /> <!--bullshit intermediate config to shortcircuit adapter/service exception-->
 
-    <adapter name="serviceConfig" />
+    <adapter name="serviceConfig" prop="true" />
     <adapter name="options" />
     <adapter name="canonical" control="true" /> <!--control === write out behaviour-->
 
-    <sensor watch="serviceConfig" pipe="bananaConfig" />
-    <data name="svc" service="data bananaConfig" prop="true" />
+    <sensor watch="collectionConfig" run="startService" auto="true" />
+    <sensor watch="serviceConfig" run="startService" auto="true" />
+    <!--<data name="svc" service="data serviceConfig" prop="true" />-->
 
     <sensor  needs="serviceConfig,options" run="_firstRun" />
 
@@ -19,7 +20,17 @@
 
 <script>
     $.cog({
+        crap: {
+            url: "wooo crap"
+        },
+
+        startService: function startService () {
+            //var config = this.serviceConfig.read()
+
+        },
+
         init: function init () {
+            var mi = this.MapItem
             // there's a initializer that fetches everything off an endpoint
             // there's a Create analog that posts to an endpoint
             // Update puts
