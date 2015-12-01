@@ -38,8 +38,8 @@
     "postcss-import": "^7.1.2"
   },
   "dependencies": {
-    "catbus": "^2.0.5",
-    "cognition-framework": "^1.0.7",
+    "catbus": "^2.0.7",
+    "cognition-framework": "^1.0.12",
     "express": "^4.13.3"
   }
 }
