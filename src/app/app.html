@@ -1,8 +1,7 @@
 <blueprint>
     <data name="collectionConfig" value="run collectionConfig">
 
-    <data name="cfg_dags" value="bananas"/>
-    <data name="dags_working" />
+    <data name="cfg_svc_dags" run="dagsConfig"/>
     <data name="dags_canonical" />
 
     <!--TODO temporarily a cog instead of an alloy-->
@@ -21,16 +20,18 @@
 
       collectionConfig: function () {
           return {
-              serviceConfig: "cfg_dags",
-              working: "dags_working",
+              serviceConfig: "cfg_svc_dags",
               canonical: "dags_canonical",
-              fetchOnInit: true
+              options: {
+                  fetchOnInit: true
+              }
           }
       },
 
-      configDags: function () {
+      dagsConfig: function dagsConfig () {
           return {
-              url: "/api/dags"
+              url: "/api/dags",
+              format: "json"
           }
       }
   })

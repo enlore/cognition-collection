@@ -2,13 +2,16 @@
     <data name="canon" />
     <data name="working" />
 
-    <!--<data name="svc" service="data serviceConfig" prop="true" />-->
+    <data name="bananaConfig"> <!--bullshit intermediate config to shortcircuit adapter/service exception-->
 
     <adapter name="serviceConfig" />
-    <!--<adapter name="working"  control="true" />-->
-    <!--<adapter name="canonical" control="true" />-->
+    <adapter name="options" />
+    <adapter name="canonical" control="true" /> <!--control === write out behaviour-->
 
-    <!--<sensor needs="collectionConfig,serviceConfig" filter="fetchOnInit" run="fetch" />-->
+    <sensor watch="serviceConfig" pipe="bananaConfig" />
+    <data name="svc" service="data bananaConfig" prop="true" />
+
+    <sensor  needs="serviceConfig,options" run="_firstRun" />
 
 </blueprint>
 
@@ -32,6 +35,12 @@
 
         },
 
+        _firstRun: function _firstRun (args) {
+            if (args.fetchOnInit) {
+                this._fetch()
+            }
+        },
+
         _newWrapper: function _newWrapper (data, server) {
             var wrapper = {
                 clientData: null,
@@ -49,7 +58,7 @@
         },
 
         fetch: function fetch () {
-            this.svc.request()
+            //this.svc.request()
         },
 
         cid: 1, // internal id counter
