@@ -12,6 +12,8 @@
 
 </blueprint>
 
+<display> <div id="dummySoNoThrowing"></div> </display>
+
 <script>
     $.cog({
         init: function init () {
@@ -20,14 +22,34 @@
             // Update puts
             // Delete deletes
 
+            var opts = {
+                //url: "",
+                //fetchOnIniit: true,
+                //updateOnSave: true,
+                //removeOnDelete: true,
+                //updateOnUpdate: true
+            }
+
+        },
+
+        _newWrapper: function _newWrapper (data, server) {
+            var wrapper = {
+                clientData: null,
+                serverData: null,
+                cid: null
+            }
+
+            if (server) {
+                wrapper.serverData = data
+            } else {
+                wrapper.clientData = data
+            }
+
+            return wrapper
         },
 
         fetch: function fetch () {
             this.svc.request()
-        },
-
-        fetchOnInit: function (args) {
-            return args.collectionConfig.fetchOnInit ? true : false // filters for undefined
         },
 
         cid: 1, // internal id counter
@@ -37,66 +59,23 @@
             return candidate
         },
 
-        insert: function (candidate, collection, push) {
-            candidate = this.setCid(candidate)
-
-            if (collection === void 0)
-                var collection = []
-
-            if (push)
-                collection.push(candidate)
-            else
-                collection.unshift(candidate)
-
-            return collection
+        insert: function (candidate) {
         },
 
-        updateOne: function (candidate, collection) {
-            for (var i = 0; i < collection.length; i++) {
-                var member = collection[i]
-
-                if (member.cid === candidate.cid)
-                    collection[i] = candidate
-            }
-
-            return collection
+        find: function (query) {
         },
 
-        find: function (query, collection) {},
+        update: function (query, props) {},
 
-        remove: function (candidate, collection) {
-            var filtered = collection.filter(function (member) {
-                if (member.cid === candidate.cid)
-                    return false
-                return true
-            })
-
-            return filtered
+        remove: function (candidate) {
         },
 
-        upsert: function (candidate, collection, push) { // granted, this assumes all ids are unique
-            var found = false
+        _create: function _create () {},
 
-            for (var i = 0; i < collection.length; i++) {
-                var member = collection[i]
+        _retrieve: function _retrieve () {},
 
-                if (member.cid === candidate.cid) {
-                    found = true
-                    collection[i] = candidate // found the member in question, so we overwrite
-                    break
-                }
-            }
+        _update: function _update () {},
 
-            if (!found) {
-                candidate = this.setCid(candidate)
-
-                if (push)
-                    collection.push(candidate)
-                else
-                    collection.unshift(candidate)
-            }
-
-            return collection
-        }
+        _delete: function _delete () {}
     })
 </script>
